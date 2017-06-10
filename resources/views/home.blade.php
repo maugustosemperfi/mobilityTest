@@ -39,7 +39,14 @@
                 <div class="panel-body">
                     <p>Nome da Parada: <span id="stopName"></span> </p>
                     <p>Endereço da Parada: <span id="stopAddr"></span></p>
-                    <p>Linhas da parada: <span id="stopRoutes"></span></p>
+                    <p>Linhas da parada: </p><span id="stopRoutes"></span>
+
+
+                            <ul class="list-unstyled" id="previsaoChegada">
+
+                            </ul>
+
+
                 </div>
             </div>
         </div>

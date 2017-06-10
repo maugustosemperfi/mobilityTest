@@ -8,22 +8,17 @@ use App\Services\SPTransService;
 
 class HomeController extends Controller
 {
-    public function init(SPTransService $service){
+    protected $service;
 
-        $paradas = $service->todasParadas();
-
-        $arrayparadas = [];
-        $row = 1;
-        /*if(($handle = fopen('C:\Users\augus\Documents\Alura\PHP\Laravel - facilitando o desenvolvimento PHP\mobilityTest\resources\csv\stops.txt', 'r')) != false){
-            while(($data = fgetcsv($handle)) != false){
-                array_push($arrayparadas, $data);
-            }
-            fclose($handle);
-        }*/
-
-        return view('home')->with(array('paradas'=>$paradas, 'service'=>$service));
+    public function __construct(SPTransService $service){
+        $this->service = $service;
+    }
 
 
+    public function init(){
+
+        $paradas = $this->service->todasParadas();
+        return view('home')->with('paradas', $paradas);
         /*foreach($array as $a){
             //echo $a->CodCorredor.'<br>';
             $parada = $client->request('GET', 'http://api.olhovivo.sptrans.com.br/v2/Parada/BuscarParadasPorCorredor?codigoCorredor='.$a->CodCorredor, ['cookies'=>$jar]);
@@ -46,7 +41,11 @@ class HomeController extends Controller
 
         //return view('home')->with('response', $response);
     }
-    public function paradasComLinhas(SPTransService $service, $codParada){
-        return response()->json($service->linhasporCodigoParada($codParada));
+    public function paradasComLinhas($codParada){
+        return response()->json($this->service->linhasporCodigoParada($codParada));
+    }
+
+    public function previsaoChegadaLinha($codParada, $codLinha){
+        return response()->json($this->service->previsaoChegada($codParada, $codLinha));
     }
 }

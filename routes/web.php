@@ -13,3 +13,4 @@
 
 Route::get('/', 'HomeController@init');
 Route::get('/Parada/{codigoParada}', 'HomeController@paradasComLinhas');
+Route::get('/Parada/{codigoParada}/{codigoLinha}', 'HomeController@previsaoChegadaLinha');

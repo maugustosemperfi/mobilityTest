@@ -15,7 +15,7 @@ class SPTransService{
         $this->client = new Client(['base_uri' => 'http://api.olhovivo.sptrans.com.br/v2/']);
         $this->auth = $this->authApi();
     }
-    protected function authApi(){
+    private function authApi(){
         $jar = new CookieJar();
         $this->client->post('Login/Autenticar?token=ecc413c44dbdb7d49020f0a7ffe4e85a3995978f5f76b2accae51acf45063ab6', ['cookies'=>$jar]);
         return $jar;
@@ -42,4 +42,10 @@ class SPTransService{
             ['cookies'=>$this->auth])->getBody());
         return $array->p;
     }
+
+    public function previsaoChegada($codigoParada, $codigoLinha){
+        return \GuzzleHttp\json_decode($this->client->get('Previsao?codigoParada='.$codigoParada.'&codigoLinha='.$codigoLinha,
+            ['cookies'=>$this->auth])->getBody())->p->l[0]->vs;
+    }
+
 }

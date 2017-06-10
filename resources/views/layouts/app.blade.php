@@ -86,6 +86,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/customaps.js') }}"></script>
+    <script src="{{ asset('js/informacoes.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABHGw_Ce7qP0w8onjpfxNBDE4OTGZrzD4&callback=initMap&language=BR&region=BR"
             async defer></script>
 </body>
