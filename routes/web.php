@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/', 'Controller@teste');
+Route::get('/', 'HomeController@init');
+Route::get('/Parada/{codigoParada}', 'HomeController@paradasComLinhas');

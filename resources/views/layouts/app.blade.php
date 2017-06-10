@@ -12,6 +12,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map{
+            height:100%;
+
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -75,6 +83,10 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/customaps.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABHGw_Ce7qP0w8onjpfxNBDE4OTGZrzD4&callback=initMap&language=BR&region=BR"
+            async defer></script>
 </body>
 </html>
