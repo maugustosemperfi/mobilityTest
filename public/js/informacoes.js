@@ -44,6 +44,8 @@ function criaBotoesdaLinha(cl, codigoParada) {
 function atualizaInformacoes(np) {
     $('#stopName').text(np);
     $('#stopRoutes').empty();
+    $('#previsaoChegada').empty();
+
 }
 
 function atribuiFuncaodaLinha(cl, codigoParada){

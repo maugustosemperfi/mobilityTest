@@ -37,9 +37,9 @@
                     <h4>Informações</h4>
                 </div>
                 <div class="panel-body">
-                    <p>Nome da Parada: <span id="stopName1"></span> </p>
-                    <p>Endereço da Parada: <span id="stopAddr1"></span></p>
-                    <p>Linhas da parada: </p><span id="stopRoutes1"></span>
+                    <p>Nome da Parada: <span id="stopName"></span> </p>
+                    <p>Endereço da Parada: <span id="stopAddr"></span></p>
+                    <p>Linhas da parada: </p><span id="stopRoutes"></span>
                             <ul class="list-unstyled" id="previsaoChegada">
                             </ul>
                 </div>
