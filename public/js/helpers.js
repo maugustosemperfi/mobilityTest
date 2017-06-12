@@ -11,6 +11,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 function getLocalHost(url){
-    regex = /^[\w^\d]+:\/\/.+\/$/;
+    regex = /^[\w^\d]+:\/\/.+\//;
     return regex.exec(url);
 }

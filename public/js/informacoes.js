@@ -14,7 +14,6 @@ $('.teste').click(function () {
 
 function buscaInformacoesParada(codigoParada) {
     $.get(getLocalHost(window.location.href)+"parada/"+codigoParada, function (data) {
-
         atualizaInformacoes(data.np);
         data.l.forEach(function (linha) {
             criaBotoesdaLinha(linha.cl, codigoParada);
