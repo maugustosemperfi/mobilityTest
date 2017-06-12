@@ -25,7 +25,7 @@
         <div class="col-md-4 col-xs-6 ">
             <div class="panel panel-default">
 
-                <div class="panel-body" style="height: 400px;">
+                <div class="panel-body" style=" height: 400px;">
                     <div id="map" style="position: relative; overflow: hidden;"></div>
                 </div>
             </div>
@@ -37,16 +37,11 @@
                     <h4>Informações</h4>
                 </div>
                 <div class="panel-body">
-                    <p>Nome da Parada: <span id="stopName"></span> </p>
-                    <p>Endereço da Parada: <span id="stopAddr"></span></p>
-                    <p>Linhas da parada: </p><span id="stopRoutes"></span>
-
-
+                    <p>Nome da Parada: <span id="stopName1"></span> </p>
+                    <p>Endereço da Parada: <span id="stopAddr1"></span></p>
+                    <p>Linhas da parada: </p><span id="stopRoutes1"></span>
                             <ul class="list-unstyled" id="previsaoChegada">
-
                             </ul>
-
-
                 </div>
             </div>
         </div>

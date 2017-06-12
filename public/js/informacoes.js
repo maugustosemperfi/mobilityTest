@@ -21,22 +21,23 @@ $('.teste').click(function () {
 });
 
 function buscaInformacoesParada(codigoParada) {
-    $.get("http://localhost:8000/Parada/"+codigoParada, function (data) {
+    $.get("http://localhost:8000/parada/"+codigoParada, function (data) {
 
         atualizaInformacoes(data.np);
         data.l.forEach(function (linha) {
-            criaBotoesdaLinha(linha.cl);
-        });
+            criaBotoesdaLinha(linha.cl, codigoParada);
+            console.log(codigoParada);
+        }, codigoParada);
 
     });
 }
-function criaBotoesdaLinha(cl) {
+function criaBotoesdaLinha(cl, codigoParada) {
     var linha = $('<a>');
     linha.attr('class', 'btn btn-primary col-md-2 linha');
     linha.attr('id', cl);
     linha.text(cl);
     $('#stopRoutes').append(linha);
-    atribuiFuncaodaLinha(cl);
+    atribuiFuncaodaLinha(cl, codigoParada);
 
 }
 
@@ -45,10 +46,11 @@ function atualizaInformacoes(np) {
     $('#stopRoutes').empty();
 }
 
-function atribuiFuncaodaLinha(cl){
-    $('#'+cl).click(function () {
-        buscaPrevisaoChegada(getParameterByName('codParada'), $(this).text());
+function atribuiFuncaodaLinha(cl, codigoParada){
 
+    $('#'+cl).click({codigo: codigoParada} ,function (event) {
+        buscaPrevisaoChegada(event.data.codigo, $(this).text());
+        console.log(event.data.codigo);
 
     });
 }
