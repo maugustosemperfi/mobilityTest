@@ -39,7 +39,8 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow({
         content: contentString
     });
-    $.get("http://localhost:8000/paradas", adicionaMarcadores)
+
+    $.get(getLocalHost(window.location.href)+"paradas", adicionaMarcadores)
         .done(function () {
             adicionaWindowsInfo();
         });
