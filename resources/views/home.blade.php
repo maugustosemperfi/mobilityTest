@@ -41,8 +41,8 @@
                     <p style="margin-left:20px;">Endereço: <span id="stopAddres"></span></p>
 
                     <p class="right-sidebar-heading">LINHAS</p>
-                    <div class="chat-list" id="stopRoutes">
-                        <a href="javascript:void(0)" class="chat-message collapsible-header">
+                    <div class="chat-list" id="stopRoutes" >
+                        <a href="javascript:void(0)" class="chat-message collapsible-header" >
 
                             <div class="chat-item">
                                 <div class="chat-item-image">
@@ -107,7 +107,7 @@
                     @foreach($paradas as $p)
 
                         @foreach($p as $parada)
-                            <li class="no-padding"><a class="waves-effect waves-blue parada" href="#?x={{$parada->Latitude}}&y={{$parada->Longitude}}&codParada={{$parada->CodigoParada}}"><i class="material-icons">place</i>{{$parada->Nome}}</a></li>
+                            <li class="no-padding"><a class="waves-effect waves-blue parada" href="#?x={{$parada->py}}&y={{$parada->px}}&codParada={{$parada->cp}}"><i class="material-icons">place</i>{{$parada->np}}</a></li>
                         @endforeach
 
                     @endforeach

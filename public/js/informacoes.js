@@ -25,18 +25,18 @@ function buscaInformacoesParada(codigoParada) {
 }
 function criaBotoesdaLinha(cl, codigoParada) {
     var chatItem = `
-        <div class="chat-item">
-            <div class="chat-item-image">
-                <img src=${getLocalHost(window.location.href)}images/icons/onibus.png class="" alt="Clique para exibir os horários">
+        <a href="javascript:void(0)" class="chat-message collapsible-header" >
+            <div class="chat-item">
+                <div class="chat-item-image">
+                    <img src=${getLocalHost(window.location.href)}images/icons/onibus.png class="" alt="Clique para exibir os horários">
+                </div>
+                <div class="chat-item-info">
+                    <p class="chat-name" id=${cl}>${cl}</p>
+                    <span class="chat-message">Clique para exibir os horários</span>
+                </div>
             </div>
-            <div class="chat-item-info">
-                <p class="chat-name" id=${cl}>${cl}</p>
-                <span class="chat-message">Clique para exibir os horários</span>
-            </div>
-        </div>
+        </a>
     `;
-
-    var collapsible =  `<a href="javascript:void(0)" class="chat-message collapsible-header">`;
 
     var linha = $('<a>');
     linha.attr('class', 'btn btn-primary col-md-2 linha');
@@ -51,8 +51,6 @@ function atualizaInformacoes(np) {
     $('#stopName').text(np);
     $('#stopRoutes').empty();
     $('#previsaoChegada').empty();
-    var collapsible =  `<a href="javascript:void(0)" class="chat-message collapsible-header">`;
-    $('#stopRoutes').append(collapsible);
 
 }
 

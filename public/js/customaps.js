@@ -54,7 +54,7 @@ function updateMap(latlng) {
 function adicionaMarcadores(dados){
     dados.forEach(function (first) {
         first.forEach(function (parada) {
-            addMarker( parada.CodigoParada, parada.Nome ,{lat: parada.Latitude, lng: parada.Longitude}, map);
+            addMarker( parada.cp, parada.np ,{lat: parada.py, lng: parada.px}, map);
         });
     });
 }

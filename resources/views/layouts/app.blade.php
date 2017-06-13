@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
 
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

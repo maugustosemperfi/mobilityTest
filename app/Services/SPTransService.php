@@ -21,11 +21,6 @@ class SPTransService{
         return $jar;
     }
 
-    public function testeApi(){
-        return $this->client->post('Login/Autenticar?token=ecc413c44dbdb7d49020f0a7ffe4e85a3995978f5f76b2accae51acf45063ab6')->getStatusCode();
-    }
-
-
     public function getCorredores(){
         return \GuzzleHttp\json_decode($this->client->get('Corredor', ['cookies'=>$this->auth])
             ->getBody());
@@ -38,7 +33,7 @@ class SPTransService{
     public function todasParadas(){
         $paradas = [];
         foreach($this->getCorredores() as $c){
-            array_push($paradas, $this->paradasPorCorredor($c->CodCorredor));
+            array_push($paradas, $this->paradasPorCorredor($c->cc));
         }
         return $paradas;
     }
