@@ -29,4 +29,8 @@ class HomeController extends Controller
     public function todasParadas(){
         return response()->json($this->service->todasParadas());
     }
+
+    public function testeApi(){
+        return $this->service->testeApi();
+    }
 }

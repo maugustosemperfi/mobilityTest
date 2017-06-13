@@ -3,11 +3,12 @@
  */
 
 
-$('.teste').click(function () {
+$('.parada').click(function () {
     setTimeout(function () {
         var latlng = {lat: parseFloat(getParameterByName('x')), lng: parseFloat(getParameterByName('y'))};
         updateMap(latlng);
-        buscaInformacoesParada(getParameterByName('codParada'))
+        buscaInformacoesParada(getParameterByName('codParada'));
+
     }, 100);
 
 });
@@ -23,11 +24,25 @@ function buscaInformacoesParada(codigoParada) {
     });
 }
 function criaBotoesdaLinha(cl, codigoParada) {
+    var chatItem = `
+        <div class="chat-item">
+            <div class="chat-item-image">
+                <img src=${getLocalHost(window.location.href)}images/icons/onibus.png class="" alt="Clique para exibir os horários">
+            </div>
+            <div class="chat-item-info">
+                <p class="chat-name" id=${cl}>${cl}</p>
+                <span class="chat-message">Clique para exibir os horários</span>
+            </div>
+        </div>
+    `;
+
+    var collapsible =  `<a href="javascript:void(0)" class="chat-message collapsible-header">`;
+
     var linha = $('<a>');
     linha.attr('class', 'btn btn-primary col-md-2 linha');
     linha.attr('id', cl);
     linha.text(cl);
-    $('#stopRoutes').append(linha);
+    $('#stopRoutes').append(chatItem);
     atribuiFuncaodaLinha(cl, codigoParada);
 
 }
@@ -36,6 +51,8 @@ function atualizaInformacoes(np) {
     $('#stopName').text(np);
     $('#stopRoutes').empty();
     $('#previsaoChegada').empty();
+    var collapsible =  `<a href="javascript:void(0)" class="chat-message collapsible-header">`;
+    $('#stopRoutes').append(collapsible);
 
 }
 

@@ -28,14 +28,11 @@ var infoWindow;
 
 function initMap() {
     var latlng = {lat: -23.592938, lng: -46.672727};
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
         zoom: 12,
         center: latlng
     });
-    var marker = new google.maps.Marker({
-        position: latlng,
-        map: map
-    });
+
     infoWindow = new google.maps.InfoWindow({
         content: contentString
     });
@@ -44,15 +41,10 @@ function initMap() {
         .done(function () {
             adicionaWindowsInfo();
         });
-
-    console.log('FON1');
-
+    $('#trigger').trigger('click');
 
 }
-$(function () {
-    console.log('FON2');
 
-})
 function updateMap(latlng) {
     var latlng = latlng;
     map.setCenter(latlng);
@@ -73,6 +65,7 @@ function addMarker(codigo, nome, location,  map) {
         position: location,
         title: nome,
         codigo: codigo,
+        icon: getLocalHost(window.location.href)+'images/icons/parada.png',
         map: map
     });
     markers.push(marker);

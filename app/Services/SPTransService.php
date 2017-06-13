@@ -12,7 +12,7 @@ class SPTransService{
     protected $auth;
 
     public function __construct(){
-        $this->client = new Client(['base_uri' => 'http://api.olhovivo.sptrans.com.br/v2/']);
+        $this->client = new Client(['base_uri' => 'http://api.olhovivo.sptrans.com.br/v2.1/']);
         $this->auth = $this->authApi();
     }
     private function authApi(){
@@ -20,6 +20,11 @@ class SPTransService{
         $this->client->post('Login/Autenticar?token=ecc413c44dbdb7d49020f0a7ffe4e85a3995978f5f76b2accae51acf45063ab6', ['cookies'=>$jar]);
         return $jar;
     }
+
+    public function testeApi(){
+        return $this->client->post('Login/Autenticar?token=ecc413c44dbdb7d49020f0a7ffe4e85a3995978f5f76b2accae51acf45063ab6')->getStatusCode();
+    }
+
 
     public function getCorredores(){
         return \GuzzleHttp\json_decode($this->client->get('Corredor', ['cookies'=>$this->auth])

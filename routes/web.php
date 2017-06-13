@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@init');
+Route::get('/teste', 'HomeController@testeApi');
 Route::get('/paradas', 'HomeController@todasParadas');
 Route::get('/parada/{codigoParada}', 'HomeController@paradasComLinhas');
 Route::get('/Parada/{codigoParada}/{codigoLinha}', 'HomeController@previsaoChegadaLinha');
