@@ -8,76 +8,73 @@ $('.parada').click(function () {
         var latlng = {lat: parseFloat(getParameterByName('x')), lng: parseFloat(getParameterByName('y'))};
         updateMap(latlng);
         buscaInformacoesParada(getParameterByName('codParada'));
-
+        $('.collapsible').collapsible();
     }, 100);
 
 });
 
 function buscaInformacoesParada(codigoParada) {
-    $.get(getLocalHost(window.location.href)+"parada/"+codigoParada, function (data) {
+    $.get(getLocalHost()+"parada/"+codigoParada, function (data) {
         atualizaInformacoes(data.np);
         data.l.forEach(function (linha) {
-            criaBotoesdaLinha(linha.cl, codigoParada);
-            console.log(codigoParada);
+            buscaPrevisaoChegada(codigoParada, linha.cl);
+
         }, codigoParada);
 
     });
 }
-function criaBotoesdaLinha(cl, codigoParada) {
+function criaBotoesdaLinha(cl, horarios) {
     var chatItem = `
-        <a href="javascript:void(0)" class="chat-message collapsible-header" >
-            <div class="chat-item">
-                <div class="chat-item-image">
-                    <img src=${getLocalHost(window.location.href)}images/icons/onibus.png class="" alt="Clique para exibir os horários">
-                </div>
-                <div class="chat-item-info">
-                    <p class="chat-name" id=${cl}>${cl}</p>
-                    <span class="chat-message">Clique para exibir os horários</span>
-                </div>
-            </div>
-        </a>
+        <li>
+             <div class="chat-list collapsible-header" id="stopRoutes"  >
+                 <div class="chat-item">
+                     <div class="chat-item-image">
+                        <img src=${getLocalHost()}images/icons/onibus.png class="" alt="Clique para exibir os horários">
+                     </div>
+                     <div class="chat-item-info">
+                         <p class="chat-name">${cl}</p>
+                         <span class="chat-message">Clique para exibir os horários</span>
+                     </div>
+                 </div>
+             </div>
+             <div class="collapsible-body">
+                     <div class="messages-container">
+                        <div class="message-wrapper them">
+                             <div class="circle-wrapper"><img src=${getLocalHost()}images/icons/clock.png class="" alt=""></div>
+                             <div class="text-wrapper">
+                                <ul>
+                                     ${horarios.map(t=>`<li>${t}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+             </div>
+         </li>
     `;
-
-    var linha = $('<a>');
-    linha.attr('class', 'btn btn-primary col-md-2 linha');
-    linha.attr('id', cl);
-    linha.text(cl);
-    $('#stopRoutes').append(chatItem);
-    atribuiFuncaodaLinha(cl, codigoParada);
+    $('#stops').append(chatItem);
 
 }
 
 function atualizaInformacoes(np) {
     $('#stopName').text(np);
-    $('#stopRoutes').empty();
+    $('#stops').empty();
     $('#previsaoChegada').empty();
 
 }
 
-function atribuiFuncaodaLinha(cl, codigoParada){
-
-    $('#'+cl).click({codigo: codigoParada} ,function (event) {
-        buscaPrevisaoChegada(event.data.codigo, $(this).text());
-        console.log(event.data.codigo);
-
-    });
-}
-
-
-
 function buscaPrevisaoChegada(codigoParada, codigoLinha) {
-    $.get(getLocalHost(window.location.href)+'Parada/'+codigoParada+'/'+codigoLinha, function (data) {
-        $('#previsaoChegada').empty();
-        data.forEach(function (posicao) {
-            criaElementosChegada(posicao.t);
-        })
-    });
-}
+    var horarios = [];
+
+    $.get(getLocalHost()+'Parada/'+codigoParada+'/'+codigoLinha)
+        .done(function (data) {
+            data.forEach(function (posicao) {
+                horarios.push(posicao.t);
+            });
+            criaBotoesdaLinha(codigoLinha, horarios);
+            return horarios;
+        });
 
 
-function criaElementosChegada(tempo) {
-    var li = $('<li>');
-    li.text(tempo);
-    $('#previsaoChegada').append(li);
+
 }
 

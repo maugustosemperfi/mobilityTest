@@ -10,7 +10,7 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-function getLocalHost(url){
+function getLocalHost(){
     regex = /^[\w^\d]+:\/\/.+\//;
-    return regex.exec(url);
+    return regex.exec(window.location.href);
 }

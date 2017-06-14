@@ -37,7 +37,7 @@ function initMap() {
         content: contentString
     });
 
-    $.get(getLocalHost(window.location.href)+"paradas", adicionaMarcadores)
+    $.get(getLocalHost()+"paradas", adicionaMarcadores)
         .done(function () {
             adicionaWindowsInfo();
         });
@@ -65,7 +65,7 @@ function addMarker(codigo, nome, location,  map) {
         position: location,
         title: nome,
         codigo: codigo,
-        icon: getLocalHost(window.location.href)+'images/icons/parada.png',
+        icon: getLocalHost()+'images/icons/parada.png',
         map: map
     });
     markers.push(marker);

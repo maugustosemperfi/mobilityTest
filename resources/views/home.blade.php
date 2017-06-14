@@ -41,44 +41,39 @@
                     <p style="margin-left:20px;">Endereço: <span id="stopAddres"></span></p>
 
                     <p class="right-sidebar-heading">LINHAS</p>
-                    <div class="chat-list" id="stopRoutes" >
-                        <a href="javascript:void(0)" class="chat-message collapsible-header" >
-
-                            <div class="chat-item">
-                                <div class="chat-item-image">
-                                    <img src={{asset('images/icons/onibus.png')}} class="" alt="Clique para exibir os horários">
-                                </div>
-                                <div class="chat-item-info">
-                                    <p class="chat-name">Número da Linha</p>
-                                    <span class="chat-message">Clique para exibir os horários</span>
-
+                    <ul class="collapsible" data-collapsible="accordion" id="stops">
+                        <li>
+                            <div class="chat-list collapsible-header" id="stopRoutes"  >
+                                <div class="chat-item">
+                                    <div class="chat-item-image">
+                                        <img src={{asset('images/icons/onibus.png')}} class="" alt="Clique para exibir os horários">
+                                    </div>
+                                    <div class="chat-item-info">
+                                        <p class="chat-name">Número da Linha</p>
+                                        <span class="chat-message">Clique para exibir os horários</span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="collapsible-body">
+                                <div class="messages-container">
+                                    <div class="message-wrapper them">
+                                        <div class="circle-wrapper"><img src={{asset('images/icons/clock.png')}} class="" alt=""></div>
+                                        <div class="text-wrapper">
+                                            <ul>
+                                                <li>08:32</li>
+                                                <li>08:32</li>
+                                                <li>08:32</li>
+                                                <li>08:32</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
 
-                        </a>
-                    </div>
-                    <div class="chat-sidebar-options">
-                        <a href="#" class="left"><i class="material-icons">edit</i></a>
-                        <a href="#" class="right"><i class="material-icons">settings</i></a>
-                    </div>
                 </div>
             </div>
-        </aside>
-        <aside id="chat-messages" class="side-nav white" >
-            <p class="sidebar-chat-name">Linha: Número da Linha<a href="#" data-activates="chat-messages" class="chat-message-link"><i class="material-icons">clear</i></a></p>
-            <div class="messages-container">
-                <div class="message-wrapper them">
-                    <div class="circle-wrapper"><img src={{asset('images/icons/clock.png')}} class="" alt=""></div>
-                    <div class="text-wrapper">
-                        <p>08:32
-                            14:23
-                            16:02
-                            16:04</p>
-                    </div>
-                </div>
-
-            </div>
-
         </aside>
         <aside id="slide-out" class="side-nav white fixed"  style="width:27.2%">
             <div class="side-nav-wrapper" >
