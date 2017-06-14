@@ -52,7 +52,6 @@ function criaBotoesdaLinha(cl, horarios) {
          </li>
     `;
     $('#stops').append(chatItem);
-
 }
 
 function atualizaInformacoes(np) {

@@ -73,7 +73,7 @@ function addMarker(codigo, nome, location,  map) {
 }
 
 function adicionaWindowsInfo() {
-    console.log(markers.length);
+
     markers.forEach(function (marker) {
         marker.addListener('click', function () {
             infoWindow.open(map, marker);
