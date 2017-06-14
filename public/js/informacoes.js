@@ -70,7 +70,7 @@ function buscaPrevisaoChegada(codigoParada, codigoLinha) {
                 horarios.push(posicao.t);
             });
             criaBotoesdaLinha(codigoLinha, horarios);
-            return horarios;
+
         });
 
 
