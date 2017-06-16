@@ -48,7 +48,7 @@ function addMarker(codigo, nome, location,  map) {
         position: location,
         title: nome,
         codigo: codigo,
-        icon: getLocalHost()+'images/icons/icon.png',
+        icon: getLocalHost()+'images/icons/parada.png',
         map: map
     });
     markers.push(marker);
