@@ -11,7 +11,6 @@ $('.parada').click(function () {
         buscaInformacoesParada(getParameterByName('codParada'));
         $('.collapsible').collapsible();
     }, 100);
-
 });
 
 function buscaInformacoesParada(codigoParada) {
