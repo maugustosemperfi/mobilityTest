@@ -1,19 +1,4 @@
-var contentString = '<div class="content"'+
-    '<div class="col-md-4 ">'+
-    '<div class="panel panel-default">'+
-    '<div class="panel-heading">'+
-    '<h4>Informações</h4>'+
-    '</div>'+
-    '<div class="panel-body">'+
-    '<p>Nome da Parada: <span id="stopName"></span> </p>'+
-    '<p>Endereço da Parada: <span id="stopAddr"></span></p>'+
-    '<p>Linhas da parada: </p><span id="stopRoutes"></span>'+
-    '<ul class="list-unstyled" id="previsaoChegada">'+
-    '</ul>'+
-    '</div>'+
-    '</div>'+
-    '</div>'+
-    '</div>';
+
 
 
 
@@ -33,13 +18,11 @@ function initMap() {
         center: latlng
     });
 
-    infoWindow = new google.maps.InfoWindow({
-        content: contentString
-    });
+
 
     $.get(getLocalHost()+"paradas", adicionaMarcadores)
         .done(function () {
-            adicionaWindowsInfo();
+            atualizaInformacoesMapa();
         });
     $('#trigger').trigger('click');
 
@@ -65,19 +48,19 @@ function addMarker(codigo, nome, location,  map) {
         position: location,
         title: nome,
         codigo: codigo,
-        icon: getLocalHost()+'images/icons/parada.png',
+        icon: getLocalHost()+'images/icons/icon.png',
         map: map
     });
     markers.push(marker);
 
 }
 
-function adicionaWindowsInfo() {
+function atualizaInformacoesMapa() {
 
     markers.forEach(function (marker) {
         marker.addListener('click', function () {
-            infoWindow.open(map, marker);
             buscaInformacoesParada(marker.codigo, marker);
+            ativaPreLoader();
         });
     });
 

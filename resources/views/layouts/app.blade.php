@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/materialPreloader.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/alpha.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
@@ -75,7 +76,7 @@
 
     <!-- Scripts -->
     <script src={{asset('js/jquery-2.2.0.min.js')}}></script>
-
+    <script src={{asset('js/main.js')}}></script>
     <script src="{{ asset('js/customaps.js'), true }}"></script>
     <script src="{{ asset('js/informacoes.js'), true }}"></script>
     <script src="{{ asset('js/helpers.js'), true }}"></script>
@@ -83,6 +84,7 @@
     <script src="{{asset('js/materialPreloader.min.js')}}"></script>
     <script src="{{asset('js/jquery.blockui.js')}}"></script>
     <script src="{{asset('js/alpha.min.js')}}"></script>
+    <script src="{{asset('js/pesquisa.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABHGw_Ce7qP0w8onjpfxNBDE4OTGZrzD4&callback=initMap&language=BR&region=BR"
             async defer></script>
 </body>

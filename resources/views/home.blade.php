@@ -14,10 +14,11 @@
                     <div class="header-title col s3">
                         <span class="chapter-title">Mobility Test</span>
                     </div>
-                    <form class="left search col s6 hide-on-small-and-down">
+                    <form class="left search col s6">
                         <div class="input-field">
                             <input id="search" type="search" placeholder="Filtrar Paradas" autocomplete="off">
                             <label for="search"><i class="material-icons search-icon">search</i></label>
+                            <span class="search-text search-result-text invisivel"></span>
                         </div>
                     </form>
                     <ul class="right col s9 m3 nav-right-menu">
@@ -33,10 +34,53 @@
                 <div class="col s12">
                     <ul class="tabs tab-demo" style="width: 100%;">
                         <li class="tab col s3"><a href="#sidebar-paradas" class="active">Informações da Parada</a></li>
-
                     </ul>
                 </div>
+
                 <div id="sidebar-paradas" class="col s12 sidebar-messages right-sidebar-panel" >
+                    <div class="col-s12 m4 center invisivel preloader" style="margin-top: 20px">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-red">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-yellow">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-green">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p style="margin-left:20px;">Nome da Parada:  <span id="stopName"></span></p>
                     <p style="margin-left:20px;">Endereço: <span id="stopAddres"></span></p>
 
@@ -102,7 +146,7 @@
                     @foreach($paradas as $p)
 
                         @foreach($p as $parada)
-                            <li class="no-padding"><a class="waves-effect waves-blue parada" href="#?x={{$parada->py}}&y={{$parada->px}}&codParada={{$parada->cp}}"><i class="material-icons">place</i>{{$parada->np}}</a></li>
+                            <li class="no-padding teste"><a class="waves-effect waves-blue parada" href="#?x={{$parada->py}}&y={{$parada->px}}&codParada={{$parada->cp}}"><i class="material-icons">place</i>{{$parada->np}}</a></li>
                         @endforeach
 
                     @endforeach

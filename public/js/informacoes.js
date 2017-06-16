@@ -7,6 +7,7 @@ $('.parada').click(function () {
     setTimeout(function () {
         var latlng = {lat: parseFloat(getParameterByName('x')), lng: parseFloat(getParameterByName('y'))};
         updateMap(latlng);
+        ativaPreLoader();
         buscaInformacoesParada(getParameterByName('codParada'));
         $('.collapsible').collapsible();
     }, 100);
@@ -14,14 +15,14 @@ $('.parada').click(function () {
 });
 
 function buscaInformacoesParada(codigoParada) {
-    $.get(getLocalHost()+"parada/"+codigoParada, function (data) {
+    $.get(getLocalHost()+"previsaoChegada/"+codigoParada, function (data) {
         atualizaInformacoes(data.np);
-        data.l.forEach(function (linha) {
-            buscaPrevisaoChegada(codigoParada, linha.cl);
+        buscaPrevisaoChegada(data.l);
 
-        }, codigoParada);
-
-    });
+    })
+        .done(function () {
+            desativaPreLoader();
+        });
 }
 function criaBotoesdaLinha(cl, horarios) {
     var chatItem = `
@@ -52,7 +53,13 @@ function criaBotoesdaLinha(cl, horarios) {
          </li>
     `;
     $('#stops').append(chatItem);
+
 }
+
+function adicionaLinhas(linhas){
+    $('#stops').append(linhas);
+}
+
 
 function atualizaInformacoes(np) {
     $('#stopName').text(np);
@@ -61,17 +68,15 @@ function atualizaInformacoes(np) {
 
 }
 
-function buscaPrevisaoChegada(codigoParada, codigoLinha) {
-    var horarios = [];
+function buscaPrevisaoChegada(linhas) {
 
-    $.get(getLocalHost()+'Parada/'+codigoParada+'/'+codigoLinha)
-        .done(function (data) {
-            data.forEach(function (posicao) {
-                horarios.push(posicao.t);
-            });
-            criaBotoesdaLinha(codigoLinha, horarios);
-
-        });
+    linhas.forEach(function(linha){
+        var horarios = []
+        linha.vs.forEach(function(tempo){
+            horarios.push(tempo.t);
+        }, linha);
+        return criaBotoesdaLinha(linha.cl, horarios);
+    });
 
 
 

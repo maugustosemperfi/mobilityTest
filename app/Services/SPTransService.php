@@ -43,9 +43,10 @@ class SPTransService{
         return $array->p;
     }
 
-    public function previsaoChegada($codigoParada, $codigoLinha){
-        return \GuzzleHttp\json_decode($this->client->get('Previsao?codigoParada='.$codigoParada.'&codigoLinha='.$codigoLinha,
-            ['cookies'=>$this->auth])->getBody())->p->l[0]->vs;
+    public function previsaoChegada($codigoParada){
+        return \GuzzleHttp\json_decode($this->client->get('Previsao/Parada?codigoParada='.$codigoParada,
+            ['cookies'=>$this->auth])->getBody())->p;
     }
+
 
 }
