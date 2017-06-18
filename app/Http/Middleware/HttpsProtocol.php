@@ -15,10 +15,12 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->secure() && env('APP_ENV') === 'prod'){
-            return redirect()->secure($request->getRequestUri());
+        if(!app()->environment('local')){
+            $request->setTrustedProxies( [ $request->getClientIp() ] );
+            if(!$request->isSecure()){
+                return redirect()->secure($request->getRequestUri());
+            }
         }
-
         return $next($request);
     }
 }
