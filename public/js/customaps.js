@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 var markers = [];
 var map;
 var infoWindow;
@@ -17,9 +9,6 @@ function initMap() {
         zoom: 12,
         center: latlng
     });
-
-
-
     $.get(getLocalHost()+"paradas", adicionaMarcadores)
         .done(function () {
             atualizaInformacoesMapa();
@@ -59,14 +48,12 @@ function atualizaInformacoesMapa() {
 
     markers.forEach(function (marker) {
         marker.addListener('click', function () {
-            buscaInformacoesParada(marker.codigo, marker);
             ativaPreLoader();
+            buscaInformacoesParada(marker.codigo, marker);
+            mostraInformacoes();
         });
     });
-
 }
-
-
 /**
  * Created by AGST on 09/06/2017.
  */

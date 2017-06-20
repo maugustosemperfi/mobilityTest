@@ -9,13 +9,13 @@ $('.parada').click(function () {
         updateMap(latlng);
         ativaPreLoader();
         buscaInformacoesParada(getParameterByName('codParada'));
-        $('.collapsible').collapsible();
+        mostraInformacoes();
     }, 100);
 });
 
 function buscaInformacoesParada(codigoParada) {
     $.get(getLocalHost()+"previsaoChegada/"+codigoParada, function (data) {
-        atualizaInformacoes(data.np);
+        atualizaInformacoes(data.np, data.py, data.px);
         buscaPrevisaoChegada(data.l);
 
     })
@@ -23,6 +23,37 @@ function buscaInformacoesParada(codigoParada) {
             desativaPreLoader();
         });
 }
+
+
+function atualizaInformacoes(np, lat, lng) {
+    $('#stops').empty();
+    $.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCa8L0l4Jd4iti6QiaDnWBeUNPIqsEVwJw`)
+        .done(function (data) {
+            $('#stopName').text(np);
+            $('#stopAddres').text(data.results[0].formatted_address);
+        });
+
+}
+
+
+function buscaPrevisaoChegada(linhas) {
+    try {
+        linhas.forEach(function (linha) {
+            var horarios = []
+            linha.vs.forEach(function (tempo) {
+                horarios.push(tempo.t);
+            });
+            criaBotoesdaLinha(linha.cl, horarios);
+        });
+    }
+    catch(err){
+        Materialize.toast('Ocorreu um erro. Por favor, tente novamente.', 3000);
+        $('#stopName').text('');
+        $('#stopAddres').text('');
+        desativaPreLoader();
+    }
+}
+
 function criaBotoesdaLinha(cl, horarios) {
     var chatItem = `
         <li>
@@ -55,29 +86,17 @@ function criaBotoesdaLinha(cl, horarios) {
 
 }
 
-function adicionaLinhas(linhas){
-    $('#stops').append(linhas);
+function mostraInformacoes(){
+    chat = $('#chat-sidebar');
+    if(chat.css('transform') == 'matrix(1, 0, 0, 1, 372, 0)'){
+        $('#trigger').trigger('click');
+    }
+}
+
+function buscaEndereco(lat, lng){
+
 }
 
 
-function atualizaInformacoes(np) {
-    $('#stopName').text(np);
-    $('#stops').empty();
-    $('#previsaoChegada').empty();
 
-}
-
-function buscaPrevisaoChegada(linhas) {
-
-    linhas.forEach(function(linha){
-        var horarios = []
-        linha.vs.forEach(function(tempo){
-            horarios.push(tempo.t);
-        }, linha);
-        return criaBotoesdaLinha(linha.cl, horarios);
-    });
-
-
-
-}
 

@@ -30,17 +30,13 @@ class SPTransService{
         return \GuzzleHttp\json_decode($this->client->get('Parada/BuscarParadasPorCorredor?codigoCorredor='.$codigoCorredor,
             ['cookies'=>$this->auth])->getBody());
     }
+
     public function todasParadas(){
         $paradas = [];
         foreach($this->getCorredores() as $c){
             array_push($paradas, $this->paradasPorCorredor($c->cc));
         }
         return $paradas;
-    }
-    public function linhasporCodigoParada($codigoParada){
-        $array = \GuzzleHttp\json_decode($this->client->get('Previsao/Parada?codigoParada='.$codigoParada,
-            ['cookies'=>$this->auth])->getBody());
-        return $array->p;
     }
 
     public function previsaoChegada($codigoParada){

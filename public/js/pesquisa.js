@@ -6,7 +6,7 @@ pesquisa = $('.input-field').find('span');
 
 document.querySelector('#search').addEventListener('input' ,function () {
     setTimeout(function () {
-        paradas = $('.teste');
+        paradas = $('.pesquisa-parada');
 
         if(pesquisa.text().length > 0){
             paradas.each(function () {

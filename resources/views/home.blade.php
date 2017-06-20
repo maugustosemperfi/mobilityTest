@@ -146,7 +146,7 @@
                     @foreach($paradas as $p)
 
                         @foreach($p as $parada)
-                            <li class="no-padding teste"><a class="waves-effect waves-blue parada" href="#?x={{$parada->py}}&y={{$parada->px}}&codParada={{$parada->cp}}"><i class="material-icons">place</i>{{$parada->np}}</a></li>
+                            <li class="no-padding pesquisa-parada"><a class="waves-effect waves-blue parada" href="#?x={{$parada->py}}&y={{$parada->px}}&codParada={{$parada->cp}}"><i class="material-icons">place</i>{{$parada->np}}</a></li>
                         @endforeach
 
                     @endforeach
