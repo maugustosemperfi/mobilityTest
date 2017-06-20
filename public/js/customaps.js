@@ -49,7 +49,7 @@ function atualizaInformacoesMapa() {
     markers.forEach(function (marker) {
         marker.addListener('click', function () {
             ativaPreLoader();
-            buscaInformacoesParada(marker.codigo, marker);
+            buscaInformacoesParada(marker.codigo);
             mostraInformacoes();
         });
     });
