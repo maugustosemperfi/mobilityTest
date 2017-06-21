@@ -33,7 +33,8 @@
             <div class="side-nav-wrapper">
                 <div class="col s12">
                     <ul class="tabs tab-demo" style="width: 100%;">
-                        <li class="tab col s3"><a href="#sidebar-paradas" class="active">Informações da Parada</a></li>
+                        <li class="tab col s6"><a href="#sidebar-paradas" class="active">Informações da Parada</a></li>
+                        <li class="tab col s6"><a href="#sidebar-filtrarParadas" class="active">Filtrar paradas por linha</a></li>
                     </ul>
                 </div>
 
@@ -117,7 +118,32 @@
                     </ul>
 
                 </div>
+                <div id="sidebar-paradas" class="col s12 sidebar-messages right-sidebar-panel" >
+
+                    <div class="row">
+                    <div class="input-field inline col s6">
+                        <input type="text" id="last_name" class="validate filtro-linha">
+                        <label for="last_name">Número da Linha</label>
+                    </div>
+                    <a href="#" class="waves-effect waves-light btn col s4 center-align" id="btn-filtrolinha">FILTRAR</a>
+                    </div>
+                    <p class="right-sidebar-heading">PARADAS</p>
+                    <ul class="filtro-paradas">
+
+                    </ul>
+
+                </div>
             </div>
+        </aside>
+        <aside id="chat-messages" class="side-nav white">
+            <p class="sidebar-chat-name">Horários da Linha<a href="#" data-activates="chat-messages" class="chat-message-link"><i class="material-icons">keyboard_arrow_right</i></a></p>
+            <div class="messages-container">
+
+                        <ul class="collapsible collapsible-accordion linha-spec" data-collapsible="accordion">
+
+                        </ul>
+            </div>
+
         </aside>
         <aside id="slide-out" class="side-nav white fixed"  style="width:27.2%">
             <div class="side-nav-wrapper" >

@@ -14,3 +14,5 @@
 Route::get('/', 'HomeController@index');
 Route::get('/paradas', 'HomeController@todasParadas');
 Route::get('/previsaoChegada/{codigoParada}', 'HomeController@previsaoChegadaLinha');
+Route::get('/previsaoChegadaLinha/{codLinha}', 'HomeController@previsaoChegadaLinhaParadas');
+Route::get('/paradasPorLinha/{codLinha}', 'HomeController@paradasPorLinha');

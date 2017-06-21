@@ -26,6 +26,15 @@ class HomeController extends Controller
         return response()->json($this->service->todasParadas());
     }
 
+    public function previsaoChegadaLinhaParadas($codLinha){
+        return response()->json($this->service->previsaoChegadaLinhaParadas($codLinha));
+    }
+
+    public function paradasPorLinha($codLinha){
+        return response()->json($this->service->paradasPorLinha($codLinha));
+    }
+
+
 
 
 }

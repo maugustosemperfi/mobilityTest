@@ -44,5 +44,15 @@ class SPTransService{
             ['cookies'=>$this->auth])->getBody())->p;
     }
 
+    public function previsaoChegadaLinhaParadas($codigoLinha){
+        return \GuzzleHttp\json_decode($this->client->get('Previsao/Linha?codigoLinha='.$codigoLinha,
+            ['cookies'=>$this->auth])->getBody());
+    }
+
+    public function paradasPorLinha($codigoLinha){
+        return \GuzzleHttp\json_decode($this->client->get('Parada/BuscarParadasPorLinha?codigoLinha='.$codigoLinha,
+            ['cookies'=>$this->auth])->getBody());
+    }
+
 
 }

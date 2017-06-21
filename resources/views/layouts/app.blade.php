@@ -84,6 +84,7 @@
     <script src="{{asset('js/jquery.blockui.js')}}"></script>
     <script src="{{asset('js/alpha.min.js')}}"></script>
     <script src="{{asset('js/pesquisa.js')}}"></script>
+    <script src="{{asset('js/filtroLinha.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABHGw_Ce7qP0w8onjpfxNBDE4OTGZrzD4&callback=initMap&language=BR&region=BR"
             async defer></script>
 </body>

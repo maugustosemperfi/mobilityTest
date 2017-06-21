@@ -2,7 +2,6 @@
  * Created by AGST on 10/06/2017.
  */
 
-
 $('.parada').click(function () {
     setTimeout(function () {
         var latlng = {lat: parseFloat(getParameterByName('x')), lng: parseFloat(getParameterByName('y'))};
@@ -14,13 +13,30 @@ $('.parada').click(function () {
 });
 
 function buscaInformacoesParada(codigoParada) {
-    $.get(getLocalHost()+"previsaoChegada/"+codigoParada, function (data) {
+    $.get("/previsaoChegada/"+codigoParada, function (data) {
         atualizaInformacoes(data.np, data.py, data.px);
         buscaPrevisaoChegada(data.l);
 
     })
         .done(function () {
             desativaPreLoader();
+            $('.teste').click(function () {
+                var linha = $($(this).parent().parent().parent().parent().parent().parent()).find('.chat-name').text();
+                $('.linha-spec').empty();
+                $.get(`/previsaoChegadaLinha/${linha}`, function (data, linha) {
+                    data.ps.forEach(function (paradas) {
+                        if(paradas.np != '' && paradas.np != null){
+                            var horarios = [];
+                            console.log(paradas.np);
+                            paradas.vs.forEach(function (tempo) {
+                                horarios.push(tempo.t);
+                            })
+                            atualizaHorarioLinhaParadas(paradas.np, horarios)
+                        }
+                    })
+                });
+                $('.chat-message-link').trigger('click');
+            });
         });
 }
 
@@ -74,7 +90,7 @@ function criaBotoesdaLinha(cl, horarios) {
                              <div class="circle-wrapper"><img src=${getLocalHost()}images/icons/clock.png class="" alt=""></div>
                              <div class="text-wrapper">
                                 <ul>
-                                     ${horarios.map(t=>`<li>${t}</li>`).join('')}
+                                     ${horarios.map(t=>`<li class="teste">${t}</li>`).join('')}
                                 </ul>
                             </div>
                         </div>
@@ -84,7 +100,9 @@ function criaBotoesdaLinha(cl, horarios) {
     `;
     $('#stops').append(chatItem);
 
+
 }
+
 
 function mostraInformacoes(){
     chat = $('#chat-sidebar');
@@ -93,8 +111,21 @@ function mostraInformacoes(){
     }
 }
 
-function buscaEndereco(lat, lng){
-
+function atualizaHorarioLinhaParadas(np, horarios){
+    var items = `
+    <li>
+        <div class="collapsible-header">
+            <p>Nome da Parada: <span>${np}</span></p>
+        </div>
+        <div class="collapsible-body">
+            <p class="center-align">Previsão de chegada </p>
+            <ul class="center-align">
+                ${horarios.map(t=>`<li>${t}</li>`).join('')} 
+            </ul>
+        </div>
+    </li>
+    `
+    $('.linha-spec').append(items);
 }
 
 
